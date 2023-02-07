@@ -24,4 +24,4 @@ main:
 
 .data
   # Stores the stirng to be printed
-  helloWorld: .asciz "Hello World -Justin"
+  helloWorld: .asciz "Hello World -Justin\n"
