@@ -18,6 +18,6 @@ main:
   # Return to OS
   LDR lr [sp, #0]
   ADD sp, sp, #4
-  MOV pe, lr
+  MOV pc, lr
 
 .data
