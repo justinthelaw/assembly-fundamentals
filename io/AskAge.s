@@ -20,10 +20,13 @@ main:
   LDR r1, [sp, #0]
   BL printf
 
-  # clean up the stack and return
+  # pop the stack and return
+  # retrieve the link register from the stack
+  LDR lr, [sp, 0]
+  # add 4 bytes back to stack
   ADD sp, sp, #4
-  MOV r0, #0
-  BX lr
+  # return, move link register back to PC
+  MOV pc, lr
 
 .data
   promptAge: .asciz "Enter your age: "

@@ -6,17 +6,21 @@
 .text
 .global main
 main:
-    # load the number into r0
-    ldr r0, =42
+  # load the number into r0
+  LDR r0, =42
 
-    # output the string with tabs
-    ldr r1, =stringOutput
-    bl printf
+  # output the string with tabs
+  LDR r1, =stringOutput
+  BL printf
 
-    # exit
-    mov r0, #0
-    bx lr
+  # pop the stack and return
+  # retrieve the link register from the stack
+  LDR lr, [sp, 0]
+  # add 4 bytes back to stack
+  ADD sp, sp, #4
+  # return, move link register back to PC
+  MOV pc, lr
 
 .data
-    stringOutput: .asciz "The number\t%d\tis surrounded by tabs\n"
+  stringOutput: .asciz "The number\t%d\tis surrounded by tabs\n"
 
