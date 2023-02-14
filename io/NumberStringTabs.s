@@ -6,6 +6,12 @@
 .text
 .global main
 main:
+  # push the stack
+  # create space on the stack by subtracting 4 bytes from the stack pointer
+  SUB sp, sp, #4
+  # save a register called link register to that point on the stack at offset of 0
+  STR lr, [sp, #0]
+
   # load the number into r0
   LDR r0, =42
 

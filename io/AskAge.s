@@ -7,8 +7,11 @@
 .global main
 
 main:
-  # allocate space on the stack for a 32-bit integer
+  # push the stack
+  # create space on the stack by subtracting 4 bytes from the stack pointer
   SUB sp, sp, #4
+  # save a register called link register to that point on the stack at offset of 0
+  STR lr, [sp, #0]
 
   # read in the user's age
   LDR r0, =formatAge
