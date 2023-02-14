@@ -12,7 +12,7 @@ main:
   # Save return to OS stack
   SUB sp, sp, #4
   STR lr, [sp, #0]
-  
+
   # Printing method
   LDR r0, =helloWorld
   BL printf
