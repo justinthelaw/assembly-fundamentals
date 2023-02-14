@@ -33,5 +33,5 @@ main:
 .data
   promptAge: .asciz "Enter your age: "
   outputAge: .asciz "Your age is: %d\n"
-  formatAge: .asicz "%d"
+  formatAge: .asciz "%d"
 
