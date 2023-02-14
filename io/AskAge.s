@@ -7,14 +7,15 @@
 .global main
 
 main:
-  # push the stack
   # create space on the stack by subtracting 4 bytes from the stack pointer
   SUB sp, sp, #4
-  # save a register called link register to that point on the stack at offset of 0
-  STR lr, [sp, #0]
 
-  # output the prompt for the user's age
+  # prompt the user for their age
   LDR r0, =promptAge
+  BL printf
+
+  # print out the format string
+  LDR r0, =formatAge
   BL printf
 
   # read in the user's age
@@ -27,15 +28,12 @@ main:
   LDR r1, [sp, #0]
   BL printf
 
-  # pop the stack and return
-  # retrieve the link register from the stack
-  LDR lr, [sp, #0]
-  # add 4 bytes back to stack
+  # clean up the stack and return
   ADD sp, sp, #4
-  # return, move link register back to PC
-  MOV pc, lr
+  MOV r0, #0
+  BX lr
 
 .data
   promptAge: .asciz "Enter your age: "
   outputAge: .asciz "Your age is: %d\n"
-  formatAge: .asciz "%d"
+  formatAge: .asciz "%d\n"
