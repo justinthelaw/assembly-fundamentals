@@ -16,7 +16,7 @@ main:
     BL printf
 
     # read in the user's age
-    LDR r0, ="%d"
+    LDR r0, =formatAge
     LDR r1, [sp, #0]
     BL scanf
 
@@ -33,3 +33,4 @@ main:
 .data
 promptAge: .asciz "Enter your age: "
 outputAge: .asciz "Your age is: %d\n"
+formatAge: .asicz "%d"
