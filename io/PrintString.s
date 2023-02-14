@@ -48,8 +48,8 @@ main:
   MOV pc, lr
 
 .data
-  prompt1: .asicz "Please enter your name: "
-  output1: .asicz "Your name is: %s\n"
-  format1: .asicz "%s"
+  prompt1: .asciz "Please enter your name: "
+  output1: .asciz "Your name is: %s\n"
+  format1: .asciz "%s"
   # 40 bytes big for the string read
   name1: .space 40

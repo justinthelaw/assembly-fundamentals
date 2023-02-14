@@ -50,8 +50,8 @@ main:
   MOV pc, lr
 
 .data
-  prompt1: .asicz "Please enter an integer number: "
-  output1: .asicz "Your entered the number: %d\n"
-  format1: .asicz "%s"
+  prompt1: .asciz "Please enter an integer number: "
+  output1: .asciz "Your entered the number: %d\n"
+  format1: .asciz "%s"
   # 32 bytes big for the integer number
   num1: .word 32
