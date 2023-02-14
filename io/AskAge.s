@@ -12,7 +12,7 @@ main:
   # save a register called link register to that point on the stack at offset of 0
   STR lr, [sp, #0]
 
-  # print the prompt for the user
+  # prompt the user for their age
   LDR r0, =promptAge
   BL printf
 
