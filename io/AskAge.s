@@ -25,7 +25,7 @@ main:
 
   # pop the stack and return
   # retrieve the link register from the stack
-  LDR lr, [sp, 0]
+  LDR lr, [sp, #0]
   # add 4 bytes back to stack
   ADD sp, sp, #4
   # return, move link register back to PC
