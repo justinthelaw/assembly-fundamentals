@@ -18,4 +18,5 @@ main:
     bx lr
 
 .data
-stringOutput: .asciz "The number\t%d\tis surrounded by tabs\n"
+    stringOutput: .asciz "The number\t%d\tis surrounded by tabs\n"
+

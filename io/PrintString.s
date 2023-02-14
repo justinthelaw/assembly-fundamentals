@@ -16,7 +16,7 @@ main:
   SUB sp, sp, #4
   # save a register called link register to that point on the stack at offset of 0
   STR lr, [sp, #0]
-  
+
   # print a prompt
   # load into r0 the address of prompt1
   LDR r0, =prompt1
@@ -46,7 +46,7 @@ main:
   ADD sp, sp, #4
   # return, move link register back to PC
   MOV pc, lr
-  
+
 .data
   prompt1: .asicz "Please enter your name: "
   output1: .asicz "Your name is: %s\n"
