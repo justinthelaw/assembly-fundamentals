@@ -1,4 +1,4 @@
-# Program name: Age.s
+# Program name: AskAge.s
 # Author: Justin Law
 # Date: 13 Feb 2023
 # Purpose: this program asks the user for their age and outputs it
@@ -12,6 +12,10 @@ main:
   SUB sp, sp, #4
   # save a register called link register to that point on the stack at offset of 0
   STR lr, [sp, #0]
+
+  # output the prompt for the user's age
+  LDR r0, =promptAge
+  BL printf
 
   # read in the user's age
   LDR r0, =formatAge
@@ -35,4 +39,3 @@ main:
   promptAge: .asciz "Enter your age: "
   outputAge: .asciz "Your age is: %d\n"
   formatAge: .asciz "%d"
-
