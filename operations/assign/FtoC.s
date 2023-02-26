@@ -31,8 +31,8 @@ main:
   BL scanf
 
   ## Perform subtraction
-  MOV r1, #32
-  SUB r0, r0, r1
+  MOV r2, #32
+  SUB r0, r0, r2
 
   ## Print out the resultant temperature
   # Load into register r0 the output format
@@ -40,7 +40,7 @@ main:
   # Load into the register r1 the number format
   LDR r1, =numberTemp
   # Load value into the address
-  LDR r1, [r1, #0]
+  LDR r1, [r1]
   # Branch and link C's printf function
   BL printf
 
