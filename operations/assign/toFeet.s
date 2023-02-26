@@ -54,7 +54,7 @@ main:
   MOV r0, r1
   ## Print out the result
   # Load into register r0 the output format
-  LDR r1, =output
+  LDR r0, =output
   # Branch and link C's printf function
   BL printf
 
