@@ -31,7 +31,8 @@ main:
   BL scanf
 
   ## Perform subtraction
-  SUB r0, r0, #32
+  MOV r1, #32
+  SUB r0, r0, r1
 
   ## Print out the resultant temperature
   # Load into register r0 the output format
