@@ -35,7 +35,7 @@ main:
   LDR r0, =number
   # Load the value from the address
   LDR r0, [r0]
-  MVN r0, [r0]
+  MVN r0, r0
   BIC r0, r0, #0x1
 
   ## Print out the resultant temperature
