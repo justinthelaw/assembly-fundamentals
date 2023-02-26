@@ -36,7 +36,7 @@ main:
   # Load the value from the address
   LDR r0, [r0]
   MVN r0, r0
-  EOR r0, r0, #0x1
+  ADD r0, r0, #1
 
   ## Print out the resultant temperature
   # Move answer in register r0 to r1
