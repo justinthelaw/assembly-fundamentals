@@ -31,7 +31,7 @@ main:
   BL scanf
 
   ## Perform multiplication first
-  LDR r1, #9
+  MOV r1, #9
   MUL r0, r0, r1
 
   @ ## Perform division next
