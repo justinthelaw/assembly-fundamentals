@@ -50,11 +50,15 @@ main:
   # Load the value from the address
   LDR r1, [r1]
   # Move into register r2 the value 12
-  MOV r2, #2
+  MOV r2, #12
   # Multiply by 12
   MUL r1, r1, r2
-  # Load into register 3 the address of input
-
+  # Load into register 2 the address of input
+  LDR r2, =inches
+  # Load the value from the address
+  LDR r2, [r2]
+  # Add to converted feet
+  ADD r1, r1, r2
 
   ## Print out the result
   # Load into register r0 the output format
