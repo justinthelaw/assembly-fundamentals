@@ -32,17 +32,16 @@ main:
   ## Conversion
   # Subtract 32 from the input temperature
   MOV r2, #32
-  LDR r1, [r1]
   SUB r1, r1, r2
   # Multiply the result by 5
   MOV r2, #5
   MUL r1, r1, r2
   # Divide the result by 9 using division function
   MOV r0, r1
-  MOV r1, #9
+  MOV r0, #9
   BL __aeabi_idiv
-  # Move the result of the division back into r0
-  MOV r0, r1
+  # Move the result of the division back into r1
+  MOV r1, r0
 
   ## Print out the resultant temperature
   # Load into register r0 the output format
@@ -50,7 +49,7 @@ main:
   # Load into the register r1 the number format
   LDR r1, =numberTemp
   # Load value into the address
-  LDR r1, [r1]
+  LDR r1, [r1, #0]
   # Branch and link C's printf function
   BL printf
 
