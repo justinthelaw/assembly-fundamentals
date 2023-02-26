@@ -62,4 +62,4 @@ main:
   promptNumber: .asciz "Enter an integer: "
   formatNumber: .asciz "%d"
   number: .word 32
-  outputNumber: .asciz "The negative is: %d\n"
+  outputNumber: .asciz "The integer * 10 is: %d\n"
