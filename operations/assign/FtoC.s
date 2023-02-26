@@ -31,17 +31,14 @@ main:
   BL scanf
 
   ## Perform multiplication first
-  LDR r0, [sp]
   LDR r1, #9
   MUL r0, r0, r1
 
   ## Perform division next
-  LDR r0, [sp]
   MOV r1, #5
   BL __aeabi_idiv
 
   ## Perform addition last
-  LDR r0, [sp]
   ADD r0, r0, #32
   MOV r1, r0
 
