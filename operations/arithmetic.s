@@ -14,6 +14,18 @@ main:
   SUB sp, sp, #4
   # Store the return address to the top of the stack
   STR lr, [sp]
+
+  ## Add 4 and 4
+  # Move immediate decimal 4 to register r2
+  MOV r2, #4
+  # Move immediate decimal 4 to register r3
+  MOV r3, #4
+  # Add the values in r0 and r1 and store the result in r2
+  ADD r2, r2, r3
+  # Load the output data format into r0
+  LDR r2, =add
+  # Call the printf function
+  BL printf 
   
   ## Divide 8 by 2
   # Move the decimal value 8 into register 0
@@ -26,7 +38,7 @@ main:
   MOV r1, r0
   # Load the output format string into register r0
   LDR r0, =div
-  # Call the C printf function with the output format string and the result in register r1
+  # Call the printf function
   BL printf
 
   # Return to OS
@@ -38,4 +50,5 @@ main:
   MOV pc, lr
 
 .data
+  add: .asciz "The result of 4 + 4 is: %d\n"
   div: .asciz "The result of 8 / 2 is: %d\n"
