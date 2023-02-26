@@ -25,8 +25,8 @@ main:
   ## Scan the user's input temperature into memory
   # Load into register r0 the input temperature format
   LDR r0, =formatTemp
-  # Load into register r1 the number format
-  LDR r1, =numberTemp
+  # Load register r1
+  LDR r1, #0
   # Branch and link to C's scanf function
   BL scanf
 
@@ -37,10 +37,6 @@ main:
   ## Print out the resultant temperature
   # Load into register r0 the output format
   LDR r0, =outputCelsius
-  # Load into the register r1 the number format
-  LDR r1, =numberTemp
-  # Load value into the address
-  LDR r1, [r1, #0]
   # Branch and link C's printf function
   BL printf
 
