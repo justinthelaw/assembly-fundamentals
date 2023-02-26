@@ -1,4 +1,4 @@
-all: FtoC CtoF toNegative toInches TenTimes toFeet
+all: FtoC CtoF toNegative toInches TenTimes toFeet XORSwap
 
 FtoC: FtoC.s
 	gcc FtoC.s -g -o FtoC
@@ -18,6 +18,9 @@ TenTimes:
 toFeet:
 	gcc toFeet.s -g -o toFeet
 
+XORSwap:
+	gcc XORSwap.s -g -o XORSwap
+
 clean:
-	rm FtoC CtoF toNegative toInches TenTimes toFeet
+	rm FtoC CtoF toNegative toInches TenTimes toFeet XORSwap
 
