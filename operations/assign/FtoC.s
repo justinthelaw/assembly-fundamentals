@@ -30,23 +30,25 @@ main:
   # Branch and link to C's scanf function
   BL scanf
 
-  ## Perform multiplication first
-  LDR r1, #9
-  MUL r0, r0, r1
+  @ ## Perform multiplication first
+  @ LDR r1, #9
+  @ MUL r0, r0, r1
 
-  ## Perform division next
-  MOV r1, #5
-  BL __aeabi_idiv
+  @ ## Perform division next
+  @ MOV r1, #5
+  @ BL __aeabi_idiv
 
-  ## Perform addition last
-  ADD r0, r0, #32
-  MOV r1, r0
+  @ ## Perform addition last
+  @ ADD r0, r0, #32
+  @ MOV r1, r0
 
   ## Print out the resultant temperature
   # Load into register r0 the output format
   LDR r0, =outputCelsius
   # Load into the register r1 the number format
-  LDR r1, numberTemp
+  LDR r1, =numberTemp
+  # Load value into the address
+  LDR r1, [r1, #0]
   # Branch and link C's printf function
   BL printf
 
