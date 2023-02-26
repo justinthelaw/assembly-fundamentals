@@ -19,20 +19,26 @@ main:
   ## Prompt the user for a temperature to convert
   # Load into register r0 the prompt
   LDR r0, =promptFahrenheit
-  LDR r1, #0
   # Branch and link to C's printf function
   BL printf
 
   ## Scan the user's input temperature into memory
   # Load into register r0 the input temperature format
   LDR r0, =formatTemp
+  # Load into register r1 the number format
+  LDR r1, =numberTemp
   # Branch and link to C's scanf function
   BL scanf
+
+  ## Perform subtraction
 
   ## Print out the resultant temperature
   # Load into register r0 the output format
   LDR r0, =outputCelsius
-  LDR r1, #0
+  # Load into the register r1 the number format
+  LDR r1, =numberTemp
+  # Load value into the address
+  LDR r1, [r1, #0]
   # Branch and link C's printf function
   BL printf
 
@@ -47,4 +53,5 @@ main:
 .data
   promptFahrenheit: .asciz "Enter a temperature in Fahrenheit: "
   formatTemp: .asciz "%d"
+  numberTemp: .word 32
   outputCelsius: .asciz "The temperature in Celsius is: %d\n"
