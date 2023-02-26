@@ -49,10 +49,10 @@ main:
   LDR r0, =inches
   # Load the value from the address
   LDR r0, [r0]
-  # Load into register r0 the address of input
-  LDR r1, =feet
+  # Load into register r2 the address of input
+  LDR r2, =feet
   # Load the value from the address
-  LDR r1, [r1]
+  LDR r2, [r2]
 
   ## Print out the result
   # Move answer in register r0 to r1
