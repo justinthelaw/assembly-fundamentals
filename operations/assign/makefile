@@ -1,4 +1,4 @@
-all: FtoC CtoF toNegative toInches TenTimes
+all: FtoC CtoF toNegative toInches TenTimes toFeet
 
 FtoC: FtoC.s
 	gcc FtoC.s -g -o FtoC
@@ -15,6 +15,9 @@ toInches:
 TenTimes:
 	gcc TenTimes.s -g -o TenTimes
 
+toFeet:
+	gcc toFeet.s -g -o toFeet
+
 clean:
-	rm FtoC CtoF toNegative toInches TenTimes
+	rm FtoC CtoF toNegative toInches TenTimes toFeet
 
