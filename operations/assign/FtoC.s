@@ -49,7 +49,7 @@ main:
   # Load into the register r1 the number format
   LDR r1, =numberTemp
   # Load value into the address
-  LDR r1, [r1]
+  LDR r0, [r0]
   # Branch and link C's printf function
   BL printf
 
