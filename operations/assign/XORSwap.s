@@ -35,14 +35,6 @@ main:
   # Print final register values
   LDR r0, =final
   BL printf
-  LDR r0, [r1]
-  LDR r1, [r0]
-  LDR r0, [r2]
-  LDR r2, [r0]
-  LDR r0, =output
-  BL printf
-  MOV r0, #0
-  BX LR
 
   # Return to OS
   # Restore the return address from the stack to the link register
