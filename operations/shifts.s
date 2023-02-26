@@ -28,6 +28,18 @@ main:
   # Call the printf function
   BL printf
 
+  ## Arithmetic Shift Right to divide by factors of 2 (immediate *2)
+  # Move the immediate 16 into r0
+  MOV r0, #16
+  # ASR by 3, which is dividng the value of 16 by 2^1 (2)
+  ASR r0, r0, #1
+  # Move the resulting value from register r0 to r1
+  MOV r1, r0
+  # Load the value format string into register r0
+  LDR r0, =asr
+  # Call the printf function
+  BL printf
+
   # Return to OS
   # Restore the return address from the stack to the link register
   LDR lr, [sp]
@@ -38,4 +50,5 @@ main:
 
 .data
   lsl: .asciz "The result of 2 * (2^3) is: %d\n"
+  asr: .asciz "The result of 16 / (2^1) is: %d\n"
 
