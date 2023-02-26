@@ -25,22 +25,21 @@ main:
   ## Scan the user's input temperature into memory
   # Load into register r0 the input temperature format
   LDR r0, =formatTemp
-  # Load into register r1 the number format
-  LDR r1, =numberTemp
+  # Load into register r1 the address of the input temperature variable
+  LDR r1, =inputTemp
   # Branch and link to C's scanf function
   BL scanf
 
   ## Perform subtraction
-  LDR r0, =32
-  SUB r2, r1, r0
+  LDR r2, =32
+  SUB r0, r0, r2
 
   ## Print out the resultant temperature
   # Load into register r0 the output format
   LDR r0, =outputCelsius
-  # Load into the register r1 the number format
-  LDR r1, =numberTemp
-  # Load value into the address
-  LDR r2, [r2]
+  # Load into register r1 the value of the input temperature variable
+  LDR r1, =inputTemp
+  LDR r1, [r1]
   # Branch and link C's printf function
   BL printf
 
@@ -55,5 +54,5 @@ main:
 .data
   promptFahrenheit: .asciz "Enter a temperature in Fahrenheit: "
   formatTemp: .asciz "%d"
-  numberTemp: .word 0
+  inputTemp: .word 0
   outputCelsius: .asciz "The temperature in Celsius is: %d\n"
