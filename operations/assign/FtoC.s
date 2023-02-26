@@ -30,9 +30,9 @@ main:
   # Branch and link to C's scanf function
   BL scanf
 
-  @ ## Perform multiplication first
-  @ LDR r1, #9
-  @ MUL r0, r0, r1
+  ## Perform multiplication first
+  LDR r1, #9
+  MUL r0, r0, r1
 
   @ ## Perform division next
   @ MOV r1, #5
