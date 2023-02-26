@@ -27,8 +27,36 @@ main:
   # Load the output data format into r1
   LDR r0, =add
   # Call the printf function
-  BL printf 
+  BL printf
+
+  ## Subtract 12 from 16
+  # Move the decimal value 16 into register 0
+  MOV r0, #16
+  # Move the decimal value 12 into register 1
+  MOV r1, #12
+  # Subtract the value of r1 from r0 and store in r0
+  SUB r0, r0, r1
+  # Move the result from register r0 to register r1
+  MOV r1, r0
+  # Load the output format string into register r0
+  LDR r0, =sub
+  # Call the printf function
+  BL printf
   
+  ## Multiply 4 by 2
+  # Move the decimal value 4 into register 0
+  MOV r0, #4
+  # Move the decimal value 2 into register 1
+  MOV r1, #2
+  # Multiply the value of r1 with r0 and store in r0
+  MUL r0, r0, r1
+  # Move the result from register r0 to register r1
+  MOV r1, r0
+  # Load the output format string into register r0
+  LDR r0, =multi
+  # Call the printf function
+  BL printf
+
   ## Divide 8 by 2
   # Move the decimal value 8 into register 0
   MOV r0, #8
@@ -53,4 +81,6 @@ main:
 
 .data
   add: .asciz "The result of 4 + 4 is: %d\n"
+  sub: .asciz "The result of 16 - 12 is: %d\n"
+  multi: .asciz "The result of 4 * 2 is: %d\n"
   div: .asciz "The result of 8 / 2 is: %d\n"
