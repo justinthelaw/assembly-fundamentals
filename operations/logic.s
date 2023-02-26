@@ -22,10 +22,10 @@ main:
   MOV r1, #0x20
   # Use the OR operation to perform toLowercase bitmask
   ORR r0, r0, r1
+  # Move the resulting value to register r1 from r0  
+  MOV r1, r0
   # Load the value format string into register r0
-  LDR r0, =format
-  # Load the output format string into register r1
-  LDR r1, =or
+  LDR r0, =or
   # Call the printf function
   BL printf
 
@@ -38,6 +38,5 @@ main:
   MOV pc, lr
 
 .data
-  format: .asciz "%s"
-  or: .asciz "The lowercase of B is: %s\n"
+  or: .asciz "The lowercase of B is: %c\n"
 
