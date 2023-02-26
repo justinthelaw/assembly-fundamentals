@@ -36,7 +36,6 @@ main:
   # Load the value from the address
   LDR r0, [r0]
   MVN r0, r0
-  BIC r0, r0, #0x0
 
   ## Print out the resultant temperature
   # Move answer in register r0 to r1
