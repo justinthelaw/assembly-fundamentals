@@ -15,9 +15,9 @@ main:
   @ print initial register values
   LDR r0,=INITIAL
   BL printf
-  LDR r0,=r1
+  LDR r0,[r1]
   LDR r1,[r0]
-  LDR r0,=r2
+  LDR r0,[r2]
   LDR r2,[r0]
   LDR r0,=OUTPUT
   BL printf
@@ -28,9 +28,9 @@ main:
   @ print final register values
   LDR r0,=FINAL
   BL printf
-  LDR r0,=r1
+  LDR r0, [r1]
   LDR r1,[r0]
-  LDR r0,=r2
+  LDR r0,[r2]
   LDR r2,[r0]
   LDR r0,=OUTPUT
   BL printf
