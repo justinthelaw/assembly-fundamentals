@@ -32,7 +32,7 @@ main:
 
   ## Perform subtraction
   MOV r2, #32
-  SUB r1, r1, r2
+  SUB r1, r0, r2
 
   ## Print out the resultant temperature
   # Load into register r0 the output format
