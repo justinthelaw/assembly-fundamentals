@@ -3,7 +3,7 @@
 # Author: Justin Law
 # Date: 25 Feb 2023
 # Purpose: This program uses 2's complement to convert an integer to
-#          its negative form using MVN and OR
+#          its negative form using MVN and ADD
 #
 
 .text
