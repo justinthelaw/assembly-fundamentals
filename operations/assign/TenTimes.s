@@ -36,8 +36,11 @@ main:
   # Load the value from the address
   LDR r0, [r0]
   # LSL with 3 to achieve input * 8
-  LSL r0, r0, #3
-  # Add
+  LSL r1, r0, #3
+  # Add original input to itself
+  ADD r0, r0, r0
+  # Add double original to LSL result
+  ADD r0, r0, r1
 
   ## Print out the result
   # Move answer in register r0 to r1
