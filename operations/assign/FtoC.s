@@ -39,8 +39,6 @@ main:
   LDR r0, =outputCelsius
   # Load into the register r1 the number format
   LDR r1, =numberTemp
-  # Load value into the address
-  LDR r1, [r1]
   # Branch and link C's printf function
   BL printf
 
