@@ -31,7 +31,7 @@ main:
   BL scanf
 
   ## Perform subtraction
-  MOV r2, #32
+  LDR r2, =32
   SUB r0, r0, r2
 
   ## Print out the resultant temperature
@@ -55,5 +55,5 @@ main:
 .data
   promptFahrenheit: .asciz "Enter a temperature in Fahrenheit: "
   formatTemp: .asciz "%d"
-  numberTemp: .word 32
+  numberTemp: .word 0
   outputCelsius: .asciz "The temperature in Celsius is: %d\n"
