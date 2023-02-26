@@ -16,14 +16,14 @@ main:
   STR lr, [sp]
 
   ## Add 4 and 4
-  # Move immediate decimal 4 to register r2
-  MOV r2, #4
-  # Move immediate decimal 4 to register r3
-  MOV r3, #4
-  # Add the values in r0 and r1 and store the result in r2
-  ADD r2, r2, r3
+  # Move immediate decimal 4 to register r0
+  MOV r0, #4
+  # Move immediate decimal 4 to register r1
+  MOV r1, #4
+  # Add the values in r0 and r1 and store the result in r0
+  ADD r0, r0, r1
   # Load the output data format into r0
-  LDR r2, =add
+  LDR r0, =add
   # Call the printf function
   BL printf 
   
