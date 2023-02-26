@@ -1,8 +1,9 @@
+
 #
 # Program name: logic.s
 # Author: Justin Law
 # Date: 25 Feb 2023
-# Purpose: This program demonstrates the usage of AND, OR, XOR, and BIC logical operators.
+# Purpose: This program demonstrates the usage of LSL and ASR for multiplication and division by factors of 2.
 #
 
 .text
@@ -15,51 +16,15 @@ main:
   # Store the return address to the top of the stack
   STR lr, [sp]
 
-  ## Bitmask "a" to "A" (toUppercase) using AND complement through BIC
-  # Move the ASCII value a into register 0
-  MOV r0, #0x61
-  # Move the bit mask for toLowercase 0x20 into register 1
-  MOV r1, #0x20
-  # Use the AND operation to perform toUppercase bitmask
-  BIC r0, r0, r1
-  # Move the resulting value to register r1 from r0  
+  ## Left Shift Left to multiplt by factors of 2 (immediate *2)
+  # Move the immediate 2 into r0
+  MOV r0, #2
+  # LSL by 3, which is multiplying the value of 2 by 2^3 (8)
+  LSL r0, r0, #3
+  # Move the resulting value from register r0 to r1
   MOV r1, r0
   # Load the value format string into register r0
-  LDR r0, =and
-  # Call the printf function
-  BL printf
-
-  ## Bitmask "B" to "b" (toLowercase) using OR
-  # Move the ASCII value B into register 0
-  MOV r0, #0x42
-  # Move the bit mask for toLowercase 0x20 into register 1
-  MOV r1, #0x20
-  # Use the OR operation to perform toLowercase bitmask
-  ORR r0, r0, r1
-  # Move the resulting value to register r1 from r0  
-  MOV r1, r0
-  # Load the value format string into register r0
-  LDR r0, =or
-  # Call the printf function
-  BL printf
-
-  ## XOR (EOR) of a 1 and 1 is 0
-  # Move the ASCII value 1 into register 0
-  MOV r0, #0x1
-   # Use the EOR operation
-  EOR r1, r0, #0x1
-  # Load the value format string into register r0
-  LDR r0, =log
-  # Call the printf function
-  BL printf
-
-  ## AND of a 1 and 1 is 1
-  # Move the ASCII value 1 into register 0
-  MOV r0, #0x1
-   # Use the AND operation
-  AND r1, r0, #0x1
-  # Load the value format string into register r0
-  LDR r0, =log
+  LDR r0, =lsl
   # Call the printf function
   BL printf
 
@@ -72,6 +37,5 @@ main:
   MOV pc, lr
 
 .data
-  and: .asciz "The uppercase of a is: %c\n"
-  or: .asciz "The lowercase of B is: %c\n"
-  log: .asciz "The result of 1 and 1 is: %d\n "
+  lsl: .asciz "The result of 2 * (2^3) is: %d\n"
+
