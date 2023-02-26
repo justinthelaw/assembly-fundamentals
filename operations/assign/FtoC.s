@@ -32,12 +32,12 @@ main:
   ## Conversion
   # Subtract 32 from the input temperature
   MOV r2, #32
-  SUB r1, r1, r2
+  SUB r0, r0, r2
   # Multiply the result by 5
   MOV r2, #5
-  MUL r1, r1, r2
+  MUL r0, r0, r2
   # Divide the result by 9 using division function
-  MOV r0, r1
+  MOV r1, r0
   MOV r0, #9
   BL __aeabi_idiv
   # Move the result of the division back into r1
