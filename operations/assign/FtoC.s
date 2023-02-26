@@ -33,6 +33,7 @@ main:
   ## Perform multiplication first
   MOV r1, #9
   MUL r0, r0, r1
+  MOV r1, r0
 
   @ ## Perform division next
   @ MOV r1, #5
