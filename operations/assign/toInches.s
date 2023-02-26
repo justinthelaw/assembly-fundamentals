@@ -49,6 +49,12 @@ main:
   LDR r1, =feet
   # Load the value from the address
   LDR r1, [r1]
+  # Move into register r2 the value 12
+  MOV r2, #2
+  # Multiply by 12
+  MUL r1, r1, r2
+  # Load into register 3 the address of input
+
 
   ## Print out the result
   # Load into register r0 the output format
