@@ -49,7 +49,17 @@ main:
    # Use the EOR operation
   EOR r1, r0, #0x1
   # Load the value format string into register r0
-  LDR r0, =xor
+  LDR r0, =log
+  # Call the printf function
+  BL printf
+
+  ## AND of a 1 and 1 is 1
+  # Move the ASCII value 1 into register 0
+  MOV r0, #0x1
+   # Use the AND operation
+  AND r1, r0, #0x1
+  # Load the value format string into register r0
+  LDR r0, =log
   # Call the printf function
   BL printf
 
@@ -64,4 +74,4 @@ main:
 .data
   and: .asciz "The uppercase of a is: %c\n"
   or: .asciz "The lowercase of B is: %c\n"
-  xor: .asciz "The result of 1 and 1 is: %d\n "
+  log: .asciz "The result of 1 and 1 is: %d\n "
