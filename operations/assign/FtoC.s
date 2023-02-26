@@ -3,7 +3,7 @@
 # Author: Justin Law
 # Date: 25 Feb 2023
 # Purpose: This program uses ADD, MUL, and __aeabi_idiv to convert from Fahrenheit (F)
-#          to Celsius (C), where F = (C * 9/5) + 32
+#          to Celsius (C), where C = (F - 32) * 5/9
 #
 
 .text
@@ -23,30 +23,21 @@ main:
   BL printf
 
   ## Scan the user's input temperature into memory
-  # Load into register r0 the temperature format
+  # Load into register r0 the input temperature format
   LDR r0, =formatTemp
   # Load into register r1 the number format
   LDR r1, =numberTemp
   # Branch and link to C's scanf function
   BL scanf
 
-  ## Perform multiplication first
-  MOV r1, #9
-  MUL r1, r1, r0
-
-  @ ## Perform division next
-  @ MOV r1, #5
-  @ BL __aeabi_idiv
-
-  @ ## Perform addition last
-  @ ADD r0, r0, #32
-  @ MOV r1, r0
+  ## Perform subtraction
+  SUB r0, r0, #32
 
   ## Print out the resultant temperature
   # Load into register r0 the output format
   LDR r0, =outputCelsius
   # Load into the register r1 the number format
-  LDR r1, =formatTemp
+  LDR r1, =numberTemp
   # Load value into the address
   LDR r1, [r1, #0]
   # Branch and link C's printf function
@@ -62,6 +53,6 @@ main:
 
 .data
   promptFahrenheit: .asciz "Enter a temperature in Fahrenheit: "
-  outputCelsius: .asciz "The temperature in Celsius is: %d\n"
   formatTemp: .asciz "%d"
   numberTemp: .word 32
+  outputCelsius: .asciz "The temperature in Celsius is: %d\n"

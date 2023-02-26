@@ -3,7 +3,7 @@
 # Author: Justin Law
 # Date: 25 Feb 2023
 # Purpose: This program uses ADD, MUL, and __aeabi_idiv to convert from Celsius (C) to
-#          Fahrenheit (F), where C = (F - 32) * 5/9
+#          Fahrenheit (F), where F = (C * 9/5) + 32
 #
 
 .text
