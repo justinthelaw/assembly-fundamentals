@@ -37,6 +37,8 @@ main:
   ## Print out the resultant temperature
   # Load into register r0 the output format
   LDR r0, =outputCelsius
+  # Load into regiater r1 the value format
+  LDR r1, =numberTemp
   # Branch and link C's printf function
   BL printf
 
