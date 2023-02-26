@@ -46,13 +46,13 @@ main:
 
   ## Conversion
   # Load into register r0 the address of input
-  LDR r0, =inches
+  LDR r1, =inches
   # Load the value from the address
-  LDR r0, [r0]
+  LDR r1, [r1]
 
   ## Print out the result
   # Load into register r0 the output format
-  LDR r0, =outputInches
+  LDR r1, =outputInches
   # Branch and link C's printf function
   BL printf
 
