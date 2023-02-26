@@ -43,6 +43,16 @@ main:
   # Call the printf function
   BL printf
 
+  ## XOR (EOR) of a 1 and 1 is 0
+  # Move the ASCII value 1 into register 0
+  MOV r0, #0x1
+   # Use the EOR operation
+  EOR r1, r0, #0x1
+  # Load the value format string into register r0
+  LDR r0, =xor
+  # Call the printf function
+  BL printf
+
   # Return to OS
   # Restore the return address from the stack to the link register
   LDR lr, [sp]
@@ -54,4 +64,4 @@ main:
 .data
   and: .asciz "The uppercase of a is: %c\n"
   or: .asciz "The lowercase of B is: %c\n"
-
+  xor: .asciz "The result of 1 and 1 is: %d\n "
