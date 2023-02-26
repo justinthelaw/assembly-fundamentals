@@ -24,8 +24,8 @@ main:
   BL printf
   # Swap r1 and r2 using EOR
   EOR r1, r1, r2
-  EOR r1, r2, r1
   EOR r2, r1, r2
+  EOR r2, r2, r1
   # Print final register values
   LDR r0, =final
   BL printf
