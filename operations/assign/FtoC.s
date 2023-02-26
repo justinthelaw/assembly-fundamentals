@@ -32,6 +32,7 @@ main:
   ## Conversion
   # Subtract 32 from the input temperature
   MOV r2, #32
+  MOV r1, [r1, #0]
   SUB r1, r1, r2
   # Multiply the result by 5
   MOV r2, #5
@@ -49,7 +50,7 @@ main:
   # Load into the register r1 the number format
   LDR r1, =numberTemp
   # Load value into the address
-  LDR r0, [r0]
+  LDR r1, [r1]
   # Branch and link C's printf function
   BL printf
 
