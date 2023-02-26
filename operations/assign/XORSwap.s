@@ -1,3 +1,10 @@
+#
+# Program name: XORSwap.s
+# Author: Justin Law
+# Date: 25 Feb 2023
+# Purpose: This program swaps 2 register values using XOR
+#
+
 .text
 .global main
 
