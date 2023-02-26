@@ -48,8 +48,10 @@ main:
   @ MOV r0, r1
 
   ## Print out the resultant temperature
+  # Move answer in register r0 to r1
+  MOV r1, r0
   # Load into register r0 the output format
-  LDR r1, =outputCelsius
+  LDR r0, =outputCelsius
   # Branch and link C's printf function
   BL printf
 
