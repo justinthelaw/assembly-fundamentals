@@ -9,35 +9,50 @@
 .global main
 
 main:
-  @ initialize registers r1 and r2 with arbitrary values
-  MOV r1,#10
-  MOV r2,#20
-  @ print initial register values
-  LDR r0,=INITIAL
-  BL printf
-  LDR r0,[r1]
-  LDR r1,[r0]
-  LDR r0,[r2]
-  LDR r2,[r0]
-  LDR r0,=OUTPUT
-  BL printf
-  @ swap r1 and r2 using eor
-  EOR r1,r1,r2
-  EOR r2,r1,r2
-  EOR r1,r1,r2
-  @ print final register values
-  LDR r0,=FINAL
+
+  # Save return address to OS stack
+  # Allocate 4 bytes of space on the stack for return address
+  SUB sp, sp, #4
+  # Store the return address to the top of the stack
+  STR lr, [sp]
+
+  # Initialize registers r1 and r2 with arbitrary values
+  MOV r1, #10
+  MOV r2, #20
+  # Print initial register values
+  LDR r0, =initial
   BL printf
   LDR r0, [r1]
-  LDR r1,[r0]
-  LDR r0,[r2]
-  LDR r2,[r0]
-  LDR r0,=OUTPUT
+  LDR r1, [r0]
+  LDR r0, [r2]
+  LDR r2, [r0]
+  LDR r0, =output
   BL printf
-  MOV r0,#0
+  # Swap r1 and r2 using eor
+  EOR r1, r1, r2
+  EOR r2, r1, r2
+  EOR r1, r1, r2
+  # Print final register values
+  LDR r0, =final
+  BL printf
+  LDR r0, [r1]
+  LDR r1, [r0]
+  LDR r0, [r2]
+  LDR r2, [r0]
+  LDR r0, =output
+  BL printf
+  MOV r0, #0
   BX LR
 
+  # Return to OS
+  # Restore the return address from the stack to the link register
+  LDR lr, [sp]
+  # Deallocate the space used by the return address on the stack
+  ADD sp, sp, #4
+  # Return to the caller by branching to the address in the link register
+  MOV pc, lr
+
 .data
-  INITIAL: .asciz "Initial values: r1=%d, r2=%d\n"
-  FINAL:   .asciz "Final values:   r1=%d, r2=%d\n"
-  OUTPUT:  .asciz "%d\n"
+  initial: .asciz "Initial values: r1=%d, r2=%d\n"
+  final: .asciz "Final values: r1=%d, r2=%d\n"
+  output: .asciz "%d\n"
