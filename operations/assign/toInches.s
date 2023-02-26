@@ -32,31 +32,19 @@ main:
 
   ## Prompt the user for feet to convert
   # Load into register r0 the prompt
-  LDR r0, =promptFeet
+  LDR r2, =promptFeet
   # Branch and link to C's printf function
   BL printf
 
   ## Scan the user's input number into memory
   # Load into register r0 the input temperature format
-  LDR r0, =formatNumber
+  LDR r2, =formatNumber
   # Load into register r1 the input's address
-  LDR r2, =feet
+  LDR r3, =feet
   # Branch and link to C's scanf function
   BL scanf
 
-  ## Conversion
-  # Load into register r0 the address of input
-  LDR r0, =inches
-  # Load the value from the address
-  LDR r0, [r0]
-  # Load into register r2 the address of input
-  LDR r2, =feet
-  # Load the value from the address
-  LDR r2, [r2]
-
   ## Print out the result
-  # Move answer in register r0 to r1
-  MOV r1, r0
   # Load into register r0 the output format
   LDR r0, =outputInches
   # Branch and link C's printf function
