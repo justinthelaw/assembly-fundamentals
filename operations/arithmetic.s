@@ -22,7 +22,9 @@ main:
   MOV r1, #4
   # Add the values in r0 and r1 and store the result in r0
   ADD r0, r0, r1
-  # Load the output data format into r0
+  # Move the result from register r0 to r1
+  MOV r1, r0
+  # Load the output data format into r1
   LDR r0, =add
   # Call the printf function
   BL printf 
