@@ -25,15 +25,14 @@ main:
   ## Scan the user's input temperature into memory
   # Load into register r0 the temperature format
   LDR r0, =formatTemp
-  # Load into register r1 the number size
+  # Load into register r1 the number format
   LDR r1, =numberTemp
   # Branch and link to C's scanf function
   BL scanf
 
   ## Perform multiplication first
   MOV r1, #9
-  MUL r0, r0, r1
-  MOV r1, r0
+  MUL r1, r1, r0
 
   @ ## Perform division next
   @ MOV r1, #5
