@@ -25,8 +25,8 @@ main:
   ## Scan the user's input temperature into memory
   # Load into register r0 the input temperature format
   LDR r0, =formatTemp
-  # Load into register r1 the number format
-  LDR r1, =numberTemp
+  # Reset register r0 with value 0
+  MOV r1, #0
   # Branch and link to C's scanf function
   BL scanf
 
