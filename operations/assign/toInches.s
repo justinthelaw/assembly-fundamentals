@@ -45,8 +45,8 @@ main:
   BL scanf
 
   ## Conversion
-  # Load into register r0 the address of input
-  LDR r1, =inches
+  # Load into register r1 the address of input
+  LDR r1, =feet
   # Load the value from the address
   LDR r1, [r1]
 
