@@ -16,29 +16,32 @@ main:
   # Store the return address to the top of the stack
   STR lr, [sp]
 
-  # Prompt user for input
-  LDR r0, =fahr_prompt
+  ## Prompt the user for a temperature to convert
+  # Load into register r0 the prompt
+  LDR r0, =promptFahrenheit
+  # Branch and link to C's printf function
   BL printf
 
-  # Read in Fahrenheit temperature as input
-  LDR r0, =fahr_format
-  MOV r1, #0
+  ## Scan the user's input temperature into memory
+  # Load into register r0 the input temperature format
+  LDR r0, =formatTemp
+  # Load into register r1 the number format
+  LDR r1, =numberTemp
+  # Branch and link to C's scanf function
   BL scanf
 
-  # Convert Fahrenheit to Celsius
-  # Subtract 32 from the input Fahrenheit temperature and store the result in r0
-  SUB r0, r0, #32
-  # Multiply the result by 5 and store the result in r0
-  MOV r1, #5
-  MUL r0, r0, r1
-  # Divide the result by 9 and store the result in r0
-  MOV r1, #9
-  BL __aeabi_idiv
-  # Move the Celsius temperature from r0 to r1
-  MOV r1, r0
+  ## Perform subtraction
+  MOV r2, #32
+  SUB r1, r1, r2
 
-  # Output Celsius temperature to console
-  LDR r0, =celsius_output
+  ## Print out the resultant temperature
+  # Load into register r0 the output format
+  LDR r0, =outputCelsius
+  # Load into the register r1 the number format
+  LDR r1, =numberTemp
+  # Load value into the address
+  LDR r1, [r1]
+  # Branch and link C's printf function
   BL printf
 
   # Return to OS
@@ -50,6 +53,7 @@ main:
   MOV pc, lr
 
 .data
-  fahr_prompt: .asciz "Enter a temperature in Fahrenheit: "
-  fahr_format: .asciz "%d"
-  celsius_output: .asciz "The equivalent temperature in Celsius is: %d\n"
+  promptFahrenheit: .asciz "Enter a temperature in Fahrenheit: "
+  formatTemp: .asciz "%d"
+  numberTemp: .word 32
+  outputCelsius: .asciz "The temperature in Celsius is: %d\n"
