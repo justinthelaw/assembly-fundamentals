@@ -32,7 +32,7 @@ main:
   ## Conversion
   # Subtract 32 from the input temperature
   MOV r2, #32
-  MOV r1, [r1, #0]
+  LDR r1, [r1]
   SUB r1, r1, r2
   # Multiply the result by 5
   MOV r2, #5
