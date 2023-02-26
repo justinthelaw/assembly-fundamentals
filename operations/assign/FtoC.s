@@ -29,19 +29,16 @@ main:
   # Branch and link to C's scanf function
   BL scanf
 
-  ## Conversion
-  # Subtract 32 from the input temperature
-  MOV r2, #32
-  SUB r0, r0, r2
+  ## Perform conversion
+  # Subtract 32 from the input temperature (stored in memory)
+  LDR r0, [r1]
+  SUB r0, r0, #32
   # Multiply the result by 5
-  MOV r2, #5
-  MUL r0, r0, r2
-  # Divide the result by 9 using __aeabi_idiv
-  MOV r1, r0
-  MOV r0, #9
+  MOV r1, #5
+  MUL r0, r0, r1
+  # Divide the result by 9
+  MOV r1, #9
   BL __aeabi_idiv
-  # Move the result of the division back into r0
-  MOV r0, r1
 
   ## Print out the resultant temperature
   # Load into register r0 the output format
@@ -64,5 +61,5 @@ main:
 .data
   promptFahrenheit: .asciz "Enter a temperature in Fahrenheit: "
   formatTemp: .asciz "%d"
-  numberTemp: .word 32
+  numberTemp: .word 0
   outputCelsius: .asciz "The temperature in Celsius is: %d\n"
