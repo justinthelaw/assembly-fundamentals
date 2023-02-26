@@ -39,18 +39,26 @@ main:
   MOV r1, #12
   # Divide by 12
   BL __aeabi_idiv
-  # Move feet into register r4
+  # Move feet (no remainder) into register r4
   MOV r4, r0
 
+  # Move into register r1 the value 12
   MOV r1, #12
+  # Move into register r0 the feet from r4
   MOV r0, r4
+  # Multiply the feet
   MUL r0, r1, r4
 
+  # Load into register r1 the address of the input
   LDR r1, =inches
+  # Load the value from the address
   LDR r1, [r1]
+  # Subtract the non-remainder inches from original inches
   SUB r1, r1, r0
 
+  # Move minutes into register r2, 2nd output
   MOV r2, r1
+  # Move hours into register r1, 1st output
   MOV r1, r4
   ## Print out the result
   # Load into register r0 the output format
