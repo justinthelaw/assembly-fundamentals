@@ -44,6 +44,12 @@ main:
   # Branch and link to C's scanf function
   BL scanf
 
+  ## Conversion
+  # Load into register r0 the address of input
+  LDR r0, =inches
+  # Load the value from the address
+  LDR r0, [r0]
+
   ## Print out the result
   # Load into register r0 the output format
   LDR r0, =outputInches
