@@ -5,33 +5,36 @@
 #          to Celsius (C), where C = (F - 32) * 5/9
 #
 
-.text
+    .text
 .global main
 
 main:
-  ldr r0,=prompt
-  bl printf
-  ldr r0,=fahrenheit
-  bl scanf
+    LDR R0,=PROMPT
+    BL printf
+    LDR R0,=FAHRENHEIT
+    BL scanf
 
-  ldr r1,=fahrenheit
-  ldr r2,[r1]
-  sub r2,r2,#32
-  mov r3,#5
-  mul r2,r2,r3
-  mov r3,#9
-  sdiv r2,r2,r3
+    LDR R1,=FAHRENHEIT
+    LDR R2,[R1]
+    SUB R2,R2,#32
+    MOV R3,#5
+    MUL R2,R2,R3
+    MOV R3,#9
+    SDIV R2,R2,R3
 
-  ldr r0,=output
-  ldr r1,=celsius
-  str r2,[r1]
-  bl printf
+    LDR R0,=OUTPUT
+    LDR R1,=CELSIUS
+    STR R2,[R1]
+    BL printf
 
-  mov r0,#0
-  bx lr
+    MOV R0,#0
+    BX LR
 
-.data
-  prompt: .asciz "Enter a Fahrenheit temperature: "
-  fahrenheit: .word 0
-  celsius: .word 0
-  output: .asciz "The Celsius temperature is: %d\n"
+    .data
+PROMPT:     .asciz "Enter a Fahrenheit temperature: "
+FAHRENHEIT: .word 0
+CELSIUS:    .word 0
+OUTPUT:     .asciz "The Celsius temperature is: %d\n"
+
+    .ltorg
+
