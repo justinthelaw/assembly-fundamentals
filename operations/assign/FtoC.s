@@ -32,6 +32,8 @@ main:
 
   ## Perform subtraction
   MOV r2, #32
+  # Load value into the address
+  LDR r1, [r1]
   SUB r0, r1, r2
 
   ## Print out the resultant temperature
