@@ -69,5 +69,5 @@ main:
 .data
   promptInches: .asciz "Enter inches: "
   formatNumber: .asciz "%d"
-  inches: .word 32
+  inches: .word 0
   output: .asciz "Total feet: %d | Total inches: %d\n"
