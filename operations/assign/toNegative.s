@@ -36,7 +36,7 @@ main:
   # Load the value from the address
   LDR r0, [r0]
   MVN r0, r0
-  BIC r0, r0, #0x1
+  BIC r0, r0, #0x0
 
   ## Print out the resultant temperature
   # Move answer in register r0 to r1
@@ -55,7 +55,7 @@ main:
   MOV pc, lr
 
 .data
-  promptNumber: .asciz "Enter a temperature in Celsius: "
+  promptNumber: .asciz "Enter an integer: "
   formatNumber: .asciz "%d"
   number: .word 32
-  outputNumber: .asciz "The temperature in Fahrenheit is: %d\n"
+  outputNumber: .asciz "The negative is: %d\n"
