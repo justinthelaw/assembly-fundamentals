@@ -19,6 +19,7 @@ main:
   ## Prompt the user for a temperature to convert
   # Load into register r0 the prompt
   LDR r0, =promptFahrenheit
+  LDR r1, #0
   # Branch and link to C's printf function
   BL printf
 
@@ -31,6 +32,7 @@ main:
   ## Print out the resultant temperature
   # Load into register r0 the output format
   LDR r0, =outputCelsius
+  LDR r1, #0
   # Branch and link C's printf function
   BL printf
 
