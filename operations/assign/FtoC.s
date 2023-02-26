@@ -46,7 +46,7 @@ main:
   # Load into register r0 the output format
   LDR r0, =outputCelsius
   # Load into the register r1 the number format
-  LDR r1, =numberTemp
+  LDR r1, =formatTemp
   # Load value into the address
   LDR r1, [r1, #0]
   # Branch and link C's printf function
