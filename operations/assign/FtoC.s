@@ -62,6 +62,6 @@ main:
 
 .data
   promptFahrenheit: .asciz "Enter a temperature in Fahrenheit: "
-  outputCelsius: .asciz "The temperature in Celsius is: "
+  outputCelsius: .asciz "The temperature in Celsius is: %d\n"
   formatTemp: .asciz "%d"
   numberTemp: .word 32
