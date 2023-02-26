@@ -31,28 +31,27 @@ main:
   BL scanf
 
   ## Conversion
-  # Load into register r1 the address of input
-  LDR r1, =inches
+  # Load into register r0 the address of input
+  LDR r0, =inches
   # Load the value from the address
-  LDR r1, [r1]
-  # Move into register r2 the value 12
-  MOV r2, #12
+  LDR r0, [r0]
+  # Move into register r1 the value 12
+  MOV r1, #12
   # Divide by 12
   BL __aeabi_idiv
-  # Move feet into register r3
-  MOV r3, r1
+  # Move feet into register r4
+  MOV r4, r0
 
-  MOV r2, #12
-  MOV r1, r3
-  MUL r1, r1, r3
+  MOV r1, #12
+  MOV r0, r4
+  MUL r0, r0, r4
 
-  LDR r2, =inches
-  LDR r2, [r2]
-  SUB r2, r2, r1
+  LDR r1, =inches
+  LDR r1, [r1]
+  SUB r1, r1, r0
 
-  MOV r3, r1
-  MOV r1, r2
-
+  MOV r2, r1
+  MOV r0, r1
   ## Print out the result
   # Load into register r0 the output format
   LDR r1, =output
@@ -71,5 +70,4 @@ main:
   promptInches: .asciz "Enter inches: "
   formatNumber: .asciz "%d"
   inches: .word 32
-  feet: .word 32
   output: .asciz "Total feet: %d | Total inches: %d\n"
