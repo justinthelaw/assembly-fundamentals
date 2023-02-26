@@ -1,9 +1,9 @@
 #
-# Program name: toNegative.s
+# Program name: toInches.s
 # Author: Justin Law
 # Date: 25 Feb 2023
-# Purpose: This program uses 2's complement to convert an integer to
-#          its negative form using MVN and ADD
+# Purpose: This program takes in feet and inches and
+#          converts to total inches
 #
 
 .text
@@ -16,35 +16,52 @@ main:
   # Store the return address to the top of the stack
   STR lr, [sp]
 
-  ## Prompt the user for a number to convert
+  ## Prompt the user for a inches to convert
   # Load into register r0 the prompt
-  LDR r0, =promptNumber
+  LDR r0, =promptInches
   # Branch and link to C's printf function
+  BL printf
+
+
+  ## Print out the resultant
+  # Move answer in register r0 to r1
+  MOV r1, r0
+  # Load into register r0 the output format
+  LDR r0, =outputInches
+  # Branch and link C's printf function
   BL printf
 
   ## Scan the user's input number into memory
   # Load into register r0 the input temperature format
   LDR r0, =formatNumber
   # Load into register r1 the input's address
-  LDR r1, =number
+  LDR r1, =inches
+  # Branch and link to C's scanf function
+  BL scanf
+
+  ## Scan the user's input number into memory
+  # Load into register r0 the input temperature format
+  LDR r0, =formatNumber
+  # Load into register r1 the input's address
+  LDR r2, =feet
   # Branch and link to C's scanf function
   BL scanf
 
   ## Conversion
   # Load into register r0 the address of input
-  LDR r0, =number
+  LDR r0, =inches
   # Load the value from the address
   LDR r0, [r0]
-  # 1's compliment on input
-  MVN r0, r0
-  # Add 1 to form 2's compliment for negative number
-  ADD r0, r0, #1
+  # Load into register r0 the address of input
+  LDR r1, =feet
+  # Load the value from the address
+  LDR r1, [r1]
 
   ## Print out the result
   # Move answer in register r0 to r1
   MOV r1, r0
   # Load into register r0 the output format
-  LDR r0, =outputNumber
+  LDR r0, =outputInches
   # Branch and link C's printf function
   BL printf
 
@@ -57,7 +74,9 @@ main:
   MOV pc, lr
 
 .data
-  promptNumber: .asciz "Enter an integer: "
+  promptInches: .asciz "Enter inches: "
+  promptFeet: .asciz "Enter feet: "
   formatNumber: .asciz "%d"
-  number: .word 32
-  outputNumber: .asciz "The negative is: %d\n"
+  inches: .word 32
+  feet: .word 32
+  outputInches: .asciz "The negative is: %d\n"
