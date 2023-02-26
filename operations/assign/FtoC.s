@@ -24,12 +24,14 @@ main:
   ## Scan the user's input temperature into memory
   # Load into register r0 the input temperature format
   LDR r0, =formatTemp
-  # Load into register r1 the number format
+  # Load into register r1 the input address
   LDR r1, =numberTemp
   # Branch and link to C's scanf function
   BL scanf
 
   ## Conversion
+  LDR r0, =numberTemp
+  LDR r0, [r0]
   # Subtract 32 from the input temperature
   MOV r2, #32
   SUB r0, r0, r2
