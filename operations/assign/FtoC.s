@@ -45,8 +45,6 @@ main:
   # Divide the result by 9 using division function
   MOV r1, #9
   BL __aeabi_idiv
-  # Move the result of the division back into r0
-  MOV r0, r1
 
   ## Print out the resultant temperature
   # Move answer in register r0 to r1
