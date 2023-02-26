@@ -16,19 +16,10 @@ main:
   # Store the return address to the top of the stack
   STR lr, [sp]
 
-  ## Prompt the user for a inches to convert
+  ## Prompt the user for inches to convert
   # Load into register r0 the prompt
   LDR r0, =promptInches
   # Branch and link to C's printf function
-  BL printf
-
-
-  ## Print out the resultant
-  # Move answer in register r0 to r1
-  MOV r1, r0
-  # Load into register r0 the output format
-  LDR r0, =outputInches
-  # Branch and link C's printf function
   BL printf
 
   ## Scan the user's input number into memory
@@ -38,6 +29,12 @@ main:
   LDR r1, =inches
   # Branch and link to C's scanf function
   BL scanf
+
+  ## Prompt the user for feet to convert
+  # Load into register r0 the prompt
+  LDR r0, =promptFeet
+  # Branch and link to C's printf function
+  BL printf
 
   ## Scan the user's input number into memory
   # Load into register r0 the input temperature format
