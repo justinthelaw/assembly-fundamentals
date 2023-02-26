@@ -61,8 +61,6 @@ main:
   ADD r1, r1, r2
 
   ## Print out the result
-  # Move result from register r1 to r0
-  MOV r0, r1
   # Load into register r0 the output format
   LDR r0, =outputInches
   # Branch and link C's printf function

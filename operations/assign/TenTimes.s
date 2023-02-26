@@ -37,8 +37,7 @@ main:
   LDR r0, [r0]
   # LSL with 3 to achieve input * 8
   LSL r0, r0, #3
-  # Add number to itself to complete input result * 2
-  ADD r0, r0, r0
+  # Add
 
   ## Print out the result
   # Move answer in register r0 to r1
