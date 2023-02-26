@@ -79,4 +79,4 @@ main:
   formatNumber: .asciz "%d"
   inches: .word 32
   feet: .word 32
-  outputInches: .asciz "The negative is: %d\n"
+  outputInches: .asciz "Total inches: %d\n"
