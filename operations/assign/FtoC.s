@@ -5,64 +5,37 @@
 #          to Celsius (C), where C = (F - 32) * 5/9
 #
 
-.text
+    .text
 .global main
 
 main:
-  # Save return address to OS stack
-  # Allocate 4 bytes of space on the stack for return address
-  SUB sp, sp, #4
-  # Store the return address to the top of the stack
-  STR lr, [sp]
+    @ Prompt user to enter a Fahrenheit temperature
+    ldr r0, =prompt         # load address of prompt into r0
+    bl printf               # print prompt message
+    ldr r0, =fahrenheit     # load address of Fahrenheit temperature variable into r0
+    bl scanf                # read user input Fahrenheit temperature into variable
 
-  ## Prompt the user for a temperature to convert
-  # Load into register r0 the prompt
-  LDR r0, =promptFahrenheit
-  # Branch and link to C's printf function
-  BL printf
+    @ Convert Fahrenheit to Celsius
+    ldr r1, =fahrenheit     # load address of Fahrenheit temperature into r1
+    ldr r2, [r1]            # load value of Fahrenheit temperature into r2
+    sub r2, r2, #32         # subtract 32 from Fahrenheit temperature
+    mov r3, #5              # load 5 into r3
+    mul r2, r2, r3          # multiply (Fahrenheit - 32) by 5
+    mov r3, #9              # load 9 into r3
+    sdiv r2, r2, r3         # divide the result by 9 to get Celsius temperature
 
-  ## Scan the user's input temperature into memory
-  # Load into register r0 the input temperature format
-  LDR r0, =formatTemp
-  # Load into register r1 the number format
-  LDR r1, =numberTemp
-  # Branch and link to C's scanf function
-  BL scanf
+    @ Output Celsius temperature
+    ldr r0, =output         # load address of output message into r0
+    ldr r1, =celsius        # load address of Celsius temperature variable into r1
+    str r2, [r1]            # store the Celsius temperature value into the variable
+    bl printf               # print the output message with the Celsius temperature value
 
-  ## Conversion
-  # Subtract 32 from the input temperature
-  MOV r2, #32
-  SUB r1, r1, r2
-  # Multiply the result by 5
-  MOV r2, #5
-  MUL r1, r1, r2
-  # Divide the result by 9 using division function
-  MOV r0, r1
-  MOV r0, #9
-  BL __aeabi_idiv
-  # Move the result of the division back into r1
-  @ MOV r1, r0
+    mov r0, #0              # return 0 to indicate successful execution
+    bx lr                   # return from function
 
-  ## Print out the resultant temperature
-  # Load into register r0 the output format
-  LDR r0, =outputCelsius
-  # Load into the register r1 the number format
-  LDR r1, =formatTemp
-  # Load value into the address
-  LDR r1, [r1, #0]
-  # Branch and link C's printf function
-  BL printf
+    @ Data section
+prompt:     .asciz "Enter a Fahrenheit temperature: "
+fahrenheit: .word 0          @ reserve space for Fahrenheit temperature
+celsius:    .word 0          @ reserve space for Celsius temperature
+output:     .asciz "The Celsius temperature is: %d\n"
 
-  # Return to OS
-  # Restore the return address from the stack to the link register
-  LDR lr, [sp]
-  # Deallocate the space used by the return address on the stack
-  ADD sp, sp, #4
-  # Return to the caller by branching to the address in the link register
-  MOV pc, lr
-
-.data
-  promptFahrenheit: .asciz "Enter a temperature in Fahrenheit: "
-  formatTemp: .asciz "%d"
-  numberTemp: .word 32
-  outputCelsius: .asciz "The temperature in Celsius is: %d\n"
