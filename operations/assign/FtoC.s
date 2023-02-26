@@ -5,36 +5,64 @@
 #          to Celsius (C), where C = (F - 32) * 5/9
 #
 
-    .text
+.text
 .global main
 
 main:
-    LDR R0,=PROMPT
-    BL printf
-    LDR R0,=FAHRENHEIT
-    BL scanf
+  # Save return address to OS stack
+  # Allocate 4 bytes of space on the stack for return address
+  SUB sp, sp, #4
+  # Store the return address to the top of the stack
+  STR lr, [sp]
 
-    LDR R1,=FAHRENHEIT
-    LDR R2,[R1]
-    SUB R2,R2,#32
-    MOV R3,#5
-    MUL R2,R2,R3
-    MOV R3,#9
-    SDIV R2,R2,R3
+  ## Prompt the user for a temperature to convert
+  # Load into register r0 the prompt
+  LDR r0, =promptFahrenheit
+  # Branch and link to C's printf function
+  BL printf
 
-    LDR R0,=OUTPUT
-    LDR R1,=CELSIUS
-    STR R2,[R1]
-    BL printf
+  ## Scan the user's input temperature into memory
+  # Load into register r0 the input temperature format
+  LDR r0, =formatTemp
+  # Load into register r1 the number format
+  LDR r1, =numberTemp
+  # Branch and link to C's scanf function
+  BL scanf
 
-    MOV R0,#0
-    BX LR
+  ## Conversion
+  # Subtract 32 from the input temperature
+  MOV r2, #32
+  SUB r0, r0, r2
+  # Multiply the result by 5
+  MOV r2, #5
+  MUL r0, r0, r2
+  # Divide the result by 9 using division function
+  MOV r1, r0
+  MOV r0, #9
+  BL __aeabi_idiv
+  # Move the result of the division back into r0
+  MOV r0, r1
 
-    .data
-PROMPT:     .asciz "Enter a Fahrenheit temperature: "
-FAHRENHEIT: .word 0
-CELSIUS:    .word 0
-OUTPUT:     .asciz "The Celsius temperature is: %d\n"
+  ## Print out the resultant temperature
+  # Load into register r0 the output format
+  LDR r0, =outputCelsius
+  # Load into the register r1 the number format
+  LDR r1, =numberTemp
+  # Load value into the address
+  LDR r1, [r1, #0]
+  # Branch and link C's printf function
+  BL printf
 
-    .ltorg
+  # Return to OS
+  # Restore the return address from the stack to the link register
+  LDR lr, [sp]
+  # Deallocate the space used by the return address on the stack
+  ADD sp, sp, #4
+  # Return to the caller by branching to the address in the link register
+  MOV pc, lr
 
+.data
+  promptFahrenheit: .asciz "Enter a temperature in Fahrenheit: "
+  formatTemp: .asciz "%d"
+  numberTemp: .word 32
+  outputCelsius: .asciz "The temperature in Celsius is: %d\n"
