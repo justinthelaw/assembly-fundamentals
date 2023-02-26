@@ -10,7 +10,7 @@ toNegative:
 	gcc toNegative.s -g -o toNegative
 
 toInches:
-  gcc toInches.s -g -o toInches
+	gcc toInches.s -g -o toInches
 
 clean:
 	rm FtoC CtoF toNegative toInches
