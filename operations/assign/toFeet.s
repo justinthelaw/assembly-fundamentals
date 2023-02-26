@@ -44,14 +44,14 @@ main:
 
   MOV r1, #12
   MOV r0, r4
-  MUL r0, r0, r4
+  MUL r0, r1, r4
 
   LDR r1, =inches
   LDR r1, [r1]
   SUB r1, r1, r0
 
   MOV r2, r1
-  MOV r0, r1
+  MOV r1, r4
   ## Print out the result
   # Load into register r0 the output format
   LDR r0, =output
