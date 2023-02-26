@@ -52,7 +52,7 @@ main:
 
   ## Print out the result
   # Load into register r0 the output format
-  LDR r1, =outputInches
+  LDR r0, =outputInches
   # Branch and link C's printf function
   BL printf
 
