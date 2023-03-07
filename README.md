@@ -9,3 +9,6 @@ To assemble, run the command: `as [insert assembly filename].s -o [insert output
 To compile, run the command: `gcc -g -c -o [insert program name] [insert output filename].o`
 
 To run a program, run the command: `./[insert program name]`
+
+
+
